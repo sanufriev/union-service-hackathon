@@ -383,6 +383,7 @@ class ItemElasticService(
             ItemsSearchSortDto.LOWEST_SELL -> EsItemSort.LOWEST_SELL_PRICE_FIRST
             ItemsSearchSortDto.HIGHEST_BID -> EsItemSort.HIGHEST_BID_PRICE_FIRST
             ItemsSearchSortDto.LOWEST_BID -> EsItemSort.LOWEST_BID_PRICE_FIRST
+            ItemsSearchSortDto.TRAIT -> TODO()
         }
     }
 

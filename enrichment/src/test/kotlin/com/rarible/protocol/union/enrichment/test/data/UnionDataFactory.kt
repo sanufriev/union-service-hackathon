@@ -127,6 +127,7 @@ fun randomUnionItem(id: ItemIdDto = randomEthItemId()): UnionItem {
         )
 
         BlockchainDto.TEZOS -> TODO()
+        BlockchainDto.APTOS -> TODO()
         BlockchainDto.SOLANA -> SolanaItemConverter.convert(
             randomSolanaTokenDto(id),
             BlockchainDto.SOLANA

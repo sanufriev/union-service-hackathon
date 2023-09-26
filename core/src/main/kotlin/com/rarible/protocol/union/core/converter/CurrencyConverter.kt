@@ -4,6 +4,7 @@ import com.rarible.protocol.currency.dto.CurrencyDto
 import com.rarible.protocol.currency.dto.CurrencyRateDto
 import com.rarible.protocol.union.core.exception.UnionCurrencyException
 import com.rarible.protocol.union.dto.BlockchainDto
+import com.rarible.protocol.union.dto.BlockchainDto.APTOS
 import com.rarible.protocol.union.dto.BlockchainDto.ETHEREUM
 import com.rarible.protocol.union.dto.BlockchainDto.FLOW
 import com.rarible.protocol.union.dto.BlockchainDto.IMMUTABLEX
@@ -47,6 +48,7 @@ object CurrencyConverter {
             TEZOS -> com.rarible.protocol.currency.dto.BlockchainDto.TEZOS
             SOLANA -> com.rarible.protocol.currency.dto.BlockchainDto.SOLANA
             MANTLE -> com.rarible.protocol.currency.dto.BlockchainDto.MANTLE
+            APTOS -> com.rarible.protocol.currency.dto.BlockchainDto.MANTLE // TODO: APTOS
         }
     }
 

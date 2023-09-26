@@ -41,6 +41,7 @@ data class UnionCollection(
         FLOW,
         TEZOS_NFT,
         TEZOS_MT,
+        APTOS,
         SOLANA,
         IMMUTABLEX
     }

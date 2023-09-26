@@ -74,6 +74,7 @@ object CollectionDtoConverter {
                 BlockchainDto.FLOW -> CollectionDto.Type.FLOW
                 BlockchainDto.TEZOS -> CollectionDto.Type.TEZOS_NFT
                 BlockchainDto.SOLANA -> CollectionDto.Type.SOLANA
+                BlockchainDto.APTOS -> CollectionDto.Type.APTOS
             }
         } else {
             return when (source) {
@@ -85,6 +86,7 @@ object CollectionDtoConverter {
                 UnionCollection.Type.TEZOS_MT -> CollectionDto.Type.TEZOS_MT
                 UnionCollection.Type.SOLANA -> CollectionDto.Type.SOLANA
                 UnionCollection.Type.IMMUTABLEX -> CollectionDto.Type.IMMUTABLEX
+                UnionCollection.Type.APTOS -> CollectionDto.Type.APTOS
             }
         }
     }

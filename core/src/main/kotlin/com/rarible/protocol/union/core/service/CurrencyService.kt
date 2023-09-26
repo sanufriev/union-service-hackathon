@@ -241,6 +241,7 @@ class CurrencyService(
                 BlockchainDto.SOLANA -> "solana"
                 BlockchainDto.IMMUTABLEX -> "immutable-x"
                 BlockchainDto.MANTLE -> "mantle"
+                BlockchainDto.APTOS -> "aptos"
             }
         }
 
