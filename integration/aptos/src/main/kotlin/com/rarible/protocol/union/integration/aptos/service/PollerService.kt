@@ -26,7 +26,7 @@ class PollerService(
     fun request() = """
 {
     "query": "query MyQuery {
-        token_activities_v2(order_by: {transaction_version: desc, event_index: desc})
+        token_activities_v2(order_by: {transaction_timestamp: desc})
         {
             type
             transaction_timestamp

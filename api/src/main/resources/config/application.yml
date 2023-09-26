@@ -53,8 +53,7 @@ api:
 
 integration:
   aptos:
-    enabled: false
-    auctionContracts: ${consul.ethereum.auctionContracts:}
+    enabled: true
   ethereum:
     enabled: ${consul.ethereum.enabled:false}
     auctionContracts: ${consul.ethereum.auctionContracts:}
