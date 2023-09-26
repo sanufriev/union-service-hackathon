@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.awaitBody
 
-@Service
 class PollerService(
     private val client: WebClient,
     private val objectMapper: ObjectMapper

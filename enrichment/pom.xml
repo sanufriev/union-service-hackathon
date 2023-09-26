@@ -54,6 +54,10 @@
             <groupId>com.rarible.protocol.union</groupId>
             <artifactId>rarible-union-integration-immutablex</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.rarible.protocol.union</groupId>
+            <artifactId>rarible-union-integration-aptos</artifactId>
+        </dependency>
 
         <!-- =============== Rarible-core ================ -->
         <dependency>

@@ -1,5 +1,6 @@
 package com.rarible.protocol.union.enrichment.configuration
 
+import com.rarible.protocol.union.integration.aptos.AptosApiConfiguration
 import com.rarible.protocol.union.integration.ethereum.blockchain.ethereum.EthereumApiConfiguration
 import com.rarible.protocol.union.integration.ethereum.blockchain.mantle.MantleApiConfiguration
 import com.rarible.protocol.union.integration.ethereum.blockchain.polygon.PolygonApiConfiguration
@@ -22,6 +23,7 @@ import org.springframework.context.annotation.Import
         SolanaApiConfiguration::class,
         ImxApiConfiguration::class,
         MantleApiConfiguration::class,
+        AptosApiConfiguration::class
     ]
 )
 class EnrichmentApiConfiguration

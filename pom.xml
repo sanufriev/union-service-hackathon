@@ -186,6 +186,11 @@
                 <scope>test</scope>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.rarible.protocol.union</groupId>
+                <artifactId>rarible-union-integration-aptos</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
             <!-- =========== Union Protocol-API =========== -->
             <dependency>

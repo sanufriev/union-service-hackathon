@@ -64,7 +64,7 @@ common:
 
 integration:
   aptos:
-    enabled: false
+    enabled: true
     consumer:
       broker-replica-set: ${kafka.hosts}
     auctionContracts: ${consul.ethereum.auctionContracts:}
