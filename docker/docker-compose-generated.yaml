@@ -1,6 +1,8 @@
 ﻿version: '3.9'
 
 x-common-variables: &common-variables
+  LOGGING_LOGFMT_ENABLED: "false"
+  LOGGING_LOGJSON_ENABLED: "false"
   APPLICATION_ENVIRONMENT: local
   SPRING_PROFILES_ACTIVE: local
   SPRING_CLOUD_CONSUL_CONFIG_ENABLED: "false"
@@ -19,6 +21,12 @@ x-common-variables: &common-variables
   INTEGRATION_FLOW_ENABLED: "false"
   INTEGRATION_SOLANA_ENABLED: "false"
   SPRING_R2DBC_URL: "r2dbc:postgres://infura:infura@localhost:5432/test"
+  SPRING_DATA_ELASTICSEARCH_CLUSTER_NAME: test
+  SPRING_DATA_ELASTICSEARCH_CLUSTER-NODES: localhost:18447
+  SPRING_DATA_ELASTICSEARCH_CLIENT_REACTIVE_ENDPOINTS: localhost:18447
+  SPRING_DATA_ELASTICSEARCH_CLIENT_REACTIVE_MAX-IN-MEMORY-SIZE: 4194304
+  SPRING_ELASTICSEARCH_REST_URIS: localhost:18447
+  ELASTICSEARCH_API-NODES: localhost:18447
 
 services:
 
@@ -72,7 +80,7 @@ services:
       - protocol-zookeeper-log-1:/datalog
 
   protocol-kafka-1:
-    image: confluentinc/cp-kafka:6.1.1
+    image: confluentinc/cp-kafka:7.5.0
     environment:
       KAFKA_ADVERTISED_LISTENERS: LISTENER_DOCKER_INTERNAL://protocol-kafka-1:9092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: LISTENER_DOCKER_INTERNAL:PLAINTEXT
