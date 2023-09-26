@@ -21,7 +21,7 @@ data class NftEvent(
     @JsonProperty("to_address") val toAddress: String?
 )
 data class CurrentTokenData(
-    @JsonProperty("token_properties") val tokenProperties: TokenProperties,
+    @JsonProperty("token_properties") val tokenProperties: TokenProperties?,
     @JsonProperty("token_name") val tokenName: String,
     @JsonProperty("token_data_id") val tokenDataId: String,
     @JsonProperty("token_standard") val tokenStandard: String,
@@ -32,9 +32,9 @@ data class CurrentTokenData(
     @JsonProperty("current_token_ownership") val currentTokenOwnership: CurrentTokenOwnership
 )
 data class TokenProperties(
-    @JsonProperty("Stem") val stem: String,
-    @JsonProperty("Flower") val flower: String,
-    @JsonProperty("Background") val background: String
+    @JsonProperty("Stem") val stem: String?,
+    @JsonProperty("Flower") val flower: String?,
+    @JsonProperty("Background") val background: String?
 )
 data class CurrentCollection(
     @JsonProperty("collection_id") val collectionId: String,
