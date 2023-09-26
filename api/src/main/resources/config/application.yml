@@ -112,8 +112,6 @@ integration:
     client:
       url: ${consul.tezos.api.baseUrl:}
     auctionContracts: ${consul.tezos.auctionContracts:}
-  aptos:
-    enabled: true
   solana:
     enabled: ${consul.solana.enabled:false}
   immutablex:
