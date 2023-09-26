@@ -12,6 +12,7 @@ import com.rarible.protocol.union.dto.BlockchainDto.MANTLE
 import com.rarible.protocol.union.dto.BlockchainDto.POLYGON
 import com.rarible.protocol.union.dto.BlockchainDto.SOLANA
 import com.rarible.protocol.union.dto.BlockchainDto.TEZOS
+import com.rarible.protocol.union.dto.BlockchainDto.APTOS
 import com.rarible.protocol.union.dto.CurrencyIdDto
 import com.rarible.protocol.union.dto.CurrencyUsdRateDto
 import java.math.BigInteger
@@ -48,7 +49,7 @@ object CurrencyConverter {
             TEZOS -> com.rarible.protocol.currency.dto.BlockchainDto.TEZOS
             SOLANA -> com.rarible.protocol.currency.dto.BlockchainDto.SOLANA
             MANTLE -> com.rarible.protocol.currency.dto.BlockchainDto.MANTLE
-            APTOS -> com.rarible.protocol.currency.dto.BlockchainDto.MANTLE // TODO: APTOS
+            APTOS -> com.rarible.protocol.currency.dto.BlockchainDto.APTOS
         }
     }
 
