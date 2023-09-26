@@ -26,7 +26,7 @@ services:
     build:
       context: ../api
       dockerfile: ../docker/Dockerfile
-    image: protocol-union-api
+    image: protocol-union-api:${TAG:-latest}
     environment:
       <<: *common-variables
       JAVA_OPTIONS: '-Xmx$UNION_API_HEAP -Xms$UNION_API_HEAP -XX:MaxDirectMemorySize=$UNION_API_DIRECT_MEMORY'
@@ -41,7 +41,7 @@ services:
     build:
       context: ../listener
       dockerfile: ../docker/Dockerfile
-    image: protocol-union-listener
+    image: protocol-union-listener:${TAG:-latest}
     environment:
       <<: *common-variables
       JAVA_OPTIONS: '-Xmx$UNION_LISTENER_HEAP -Xms$UNION_LISTENER_HEAP -XX:MaxDirectMemorySize=$UNION_LISTENER_DIRECT_MEMORY'
@@ -53,7 +53,7 @@ services:
     build:
       context: ../meta-loader
       dockerfile: ../docker/Dockerfile
-    image: protocol-union-meta-loader
+    image: protocol-union-meta-loader:${TAG:-latest}
     environment:
       <<: *common-variables
       JAVA_OPTIONS: '-Xmx$UNION_META_LOADER_HEAP -Xms$UNION_META_LOADER_HEAP -XX:MaxDirectMemorySize=$UNION_META_LOADER_DIRECT_MEMORY'

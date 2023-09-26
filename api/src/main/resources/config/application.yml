@@ -52,20 +52,23 @@ api:
     ethereum: eth
 
 integration:
+  aptos:
+    enabled: false
+    auctionContracts: ${consul.ethereum.auctionContracts:}
   ethereum:
-    enabled: ${consul.ethereum.enabled:true}
+    enabled: ${consul.ethereum.enabled:false}
     auctionContracts: ${consul.ethereum.auctionContracts:}
   polygon:
-    enabled: ${consul.polygon.enabled:true}
+    enabled: ${consul.polygon.enabled:false}
     auctionContracts: ${consul.polygon.auctionContracts:}
   mantle:
     enabled: ${consul.mantle.enabled:false}
     auctionContracts: ${consul.mantle.auctionContracts:}
   flow:
-    enabled: ${consul.flow.enabled:true}
+    enabled: ${consul.flow.enabled:false}
     auctionContracts: ${consul.flow.auctionContracts:}
   tezos:
-    enabled: ${consul.tezos.enabled:true}
+    enabled: ${consul.tezos.enabled:false}
     dipdup:
       network: ${consul.tezos.dipdup.network:}
       dipdupUrl: ${consul.tezos.dipdup.dipdupUrl:}
@@ -112,7 +115,7 @@ integration:
   solana:
     enabled: ${consul.solana.enabled:false}
   immutablex:
-    enabled: ${consul.immutablex.enabled:true}
+    enabled: ${consul.immutablex.enabled:false}
     client:
       url: ${consul.immutablex.api.baseUrl:}
       byIdsChunkSize: 16

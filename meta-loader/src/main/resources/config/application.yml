@@ -63,8 +63,17 @@ meta:
   retries: "PT10S,PT30S,PT5M,PT1H,P1D"
 
 integration:
+  aptos:
+    enabled: ${consul.ethereum.enabled:false}
+    consumer:
+      broker-replica-set: ${kafka.hosts}
+      workers:
+        item: 1
+        ownership: 1
+        order: 1
+    auctionContracts: ${consul.ethereum.auctionContracts:}
   ethereum:
-    enabled: ${consul.ethereum.enabled:true}
+    enabled: ${consul.ethereum.enabled:false}
     consumer:
       broker-replica-set: ${kafka.hosts}
       workers:
@@ -73,7 +82,7 @@ integration:
         order: 1
     auctionContracts: ${consul.ethereum.auctionContracts:}
   polygon:
-    enabled: ${consul.polygon.enabled:true}
+    enabled: ${consul.polygon.enabled:false}
     consumer:
       broker-replica-set: ${kafka.hosts}
       workers:
@@ -91,7 +100,7 @@ integration:
         order: 1
     auctionContracts: ${consul.mantle.auctionContracts:}
   flow:
-    enabled: ${consul.flow.enabled:true}
+    enabled: ${consul.flow.enabled:false}
     consumer:
       broker-replica-set: ${kafka.hosts}
       workers:
@@ -100,7 +109,7 @@ integration:
         order: 1
     auctionContracts: ${consul.flow.auctionContracts:}
   tezos:
-    enabled: ${consul.tezos.enabled:true}
+    enabled: ${consul.tezos.enabled:false}
     dipdup:
       network: ${consul.tezos.dipdup.network:}
       dipdupUrl: ${consul.tezos.dipdup.dipdupUrl:}
@@ -149,7 +158,7 @@ integration:
   solana:
     enabled: ${consul.solana.enabled:false}
   immutablex:
-    enabled: ${consul.immutablex.enabled:true}
+    enabled: ${consul.immutablex.enabled:false}
     client:
       url: ${consul.immutablex.api.baseUrl:}
       byIdsChunkSize: 16

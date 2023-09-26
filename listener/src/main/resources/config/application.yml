@@ -63,13 +63,18 @@ common:
 
 
 integration:
+  aptos:
+    enabled: false
+    consumer:
+      broker-replica-set: ${kafka.hosts}
+    auctionContracts: ${consul.ethereum.auctionContracts:}
   ethereum:
-    enabled: ${consul.ethereum.enabled:true}
+    enabled: ${consul.ethereum.enabled:false}
     consumer:
       broker-replica-set: ${kafka.hosts}
     auctionContracts: ${consul.ethereum.auctionContracts:}
   polygon:
-    enabled: ${consul.polygon.enabled:true}
+    enabled: ${consul.polygon.enabled:false}
     consumer:
       broker-replica-set: ${kafka.hosts}
     auctionContracts: ${consul.polygon.auctionContracts:}
@@ -79,12 +84,12 @@ integration:
       broker-replica-set: ${kafka.hosts}
     auctionContracts: ${consul.mantle.auctionContracts:}
   flow:
-    enabled: ${consul.flow.enabled:true}
+    enabled: ${consul.flow.enabled:false}
     consumer:
       broker-replica-set: ${kafka.hosts}
     auctionContracts: ${consul.flow.auctionContracts:}
   tezos:
-    enabled: ${consul.tezos.enabled:true}
+    enabled: ${consul.tezos.enabled:false}
     dipdup:
       network: ${consul.tezos.dipdup.network:}
       dipdupUrl: ${consul.tezos.dipdup.dipdupUrl:}
@@ -145,7 +150,7 @@ integration:
       broker-replica-set: ${kafka.hosts}
     auctionContracts:
   immutablex:
-    enabled: ${consul.immutablex.enabled:true}
+    enabled: ${consul.immutablex.enabled:false}
     client:
       url: ${consul.immutablex.api.baseUrl:}
       byIdsChunkSize: 16

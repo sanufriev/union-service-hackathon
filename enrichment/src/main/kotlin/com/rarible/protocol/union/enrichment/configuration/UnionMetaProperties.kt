@@ -8,12 +8,12 @@ import java.time.Duration
 @ConstructorBinding
 @ConfigurationProperties("meta")
 data class UnionMetaProperties(
-    val ipfsGateway: String,
-    val ipfsPublicGateway: String,
-    val ipfsLegacyGateway: String?,
-    val mediaFetchMaxSize: Long,
-    val openSeaProxyUrl: String,
-    val embedded: EmbeddedContentProperties,
+    val ipfsGateway: String = "https://ipfs.io",
+    val ipfsPublicGateway: String = "https://ipfs.io",
+    val ipfsLegacyGateway: String? = "https://ipfs.io",
+    val mediaFetchMaxSize: Long = 1024 * 1024 * 10,
+    val openSeaProxyUrl: String = "https://api.opensea.io/api/v1",
+    val embedded: EmbeddedContentProperties = EmbeddedContentProperties(publicUrl = "http://localhost:8085/v0.1"),
     val trimming: MetaTrimmingProperties = MetaTrimmingProperties(),
     val httpClient: HttpClient = HttpClient(),
     val simpleHash: SimpleHash = SimpleHash(),

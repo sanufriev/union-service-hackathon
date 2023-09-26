@@ -1,0 +1,108 @@
+﻿version: '3.9'
+
+x-common-variables: &common-variables
+  APPLICATION_ENVIRONMENT: local
+  SPRING_PROFILES_ACTIVE: local
+  SPRING_CLOUD_CONSUL_CONFIG_ENABLED: "false"
+  SPRING_CLOUD_SERVICEREGISTRY_AUTOREGISTRATION_ENABLED: "false"
+  SPRING_CLOUD_DISCOVERY_ENABLED: "false"
+  LOGGING_LOGSTASH_TCP-SOCKET_ENABLED: "false"
+  RARIBLE_CORE_APM_AGENT_ENABLED: "false"
+  RARIBLE_CORE_APM_WEB_ENABLED: "false"
+  RARIBLE_CORE_APM_ANNOTATION_ENABLED: "false"
+  SPRING_DATA_MONGODB_URI: mongodb://${MONGO_HOST}
+  SPRING_DATA_MONGODB_DATABASE: protocol-union
+  KAFKA_HOSTS: PLAINTEXT://${KAFKA_HOST}
+  INTEGRATION_ETHEREUM_ENABLED: "false"
+  INTEGRATION_POLYGON_ENABLED: "false"
+  INTEGRATION_TEZOS_ENABLED: "false"
+  INTEGRATION_FLOW_ENABLED: "false"
+  INTEGRATION_SOLANA_ENABLED: "false"
+  SPRING_R2DBC_URL: "r2dbc:postgres://infura:infura@localhost:5432/test"
+
+services:
+
+  local-union-api:
+    build:
+      context: ../api
+      dockerfile: ../docker/Dockerfile
+    image: protocol-union-api:${TAG:-latest}
+    environment:
+      <<: *common-variables
+      JAVA_OPTIONS: '-Xmx512m -Xms512m -XX:MaxDirectMemorySize=512m'
+      PROTOCOL_UNION_SUBSCRIBER_BROKER-REPLICA-SET: PLAINTEXT://${KAFKA_HOST}
+    ports:
+      - "8081:8080"
+    depends_on:
+      - "protocol-kafka-1"
+      - "protocol-mongodb"
+
+  local-union-listener:
+    build:
+      context: ../listener
+      dockerfile: ../docker/Dockerfile
+    image: protocol-union-listener:${TAG:-latest}
+    environment:
+      <<: *common-variables
+      JAVA_OPTIONS: '-Xmx512m -Xms512m -XX:MaxDirectMemorySize=512m'
+    depends_on:
+      - "protocol-kafka-1"
+      - "protocol-mongodb"
+
+  local-union-meta-loader:
+    build:
+      context: ../meta-loader
+      dockerfile: ../docker/Dockerfile
+    image: protocol-union-meta-loader:${TAG:-latest}
+    environment:
+      <<: *common-variables
+      JAVA_OPTIONS: '-Xmx512m -Xms512m -XX:MaxDirectMemorySize=512m'
+    depends_on:
+      - "protocol-kafka-1"
+      - "protocol-mongodb"
+
+  protocol-zookeeper-1:
+    image: zookeeper:3.7.0
+    environment:
+      ZOO_MY_ID: 1
+      ZOO_PORT: 2181
+      ZOO_SERVERS: server.1=protocol-zookeeper-1:2888:3888;2181
+    volumes:
+      - protocol-zookeeper-1:/data
+      - protocol-zookeeper-log-1:/datalog
+
+  protocol-kafka-1:
+    image: confluentinc/cp-kafka:6.1.1
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: LISTENER_DOCKER_INTERNAL://protocol-kafka-1:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: LISTENER_DOCKER_INTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_DOCKER_INTERNAL
+      KAFKA_ZOOKEEPER_CONNECT: "protocol-zookeeper-1:2181"
+      KAFKA_BROKER_ID: 1
+      KAFKA_LOG4J_LOGGERS: "kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
+      KAFKA_NUM_PARTITIONS: 9
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_LOG_RETENTION_HOURS: 24
+    volumes:
+      - protocol-kafka-1:/var/lib/kafka/data
+    depends_on:
+      - "protocol-zookeeper-1"
+
+  protocol-mongodb:
+    image: mongo:4.0.21
+    command: --port 27017 --wiredTigerCacheSizeGB 1
+    ports:
+      - "47017:27017"
+    volumes:
+      - protocol-mongodb:/data/db
+    depends_on:
+      - "protocol-kafka-1"
+
+volumes:
+  protocol-zookeeper-1: {}
+  protocol-zookeeper-log-1: {}
+  protocol-kafka-1: {}
+  protocol-mongodb: {}
