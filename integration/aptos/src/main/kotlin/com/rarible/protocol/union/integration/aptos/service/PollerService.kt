@@ -20,7 +20,6 @@ class PollerService(
             .uri("v1/graphql")
             .bodyValue(request())
             .retrieve().awaitBody<String>()
-        logger.info("Received: $result")
         return objectMapper.readValue(result)
     }
 

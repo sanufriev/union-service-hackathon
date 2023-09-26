@@ -8,9 +8,7 @@ import org.springframework.data.mongodb.core.ReactiveMongoTemplate
 import org.springframework.data.mongodb.core.find
 import org.springframework.data.mongodb.core.findById
 import org.springframework.data.mongodb.core.query.Query
-import org.springframework.stereotype.Component
 
-@Component
 class AptosRepository(
     private val template: ReactiveMongoTemplate
 ) {
