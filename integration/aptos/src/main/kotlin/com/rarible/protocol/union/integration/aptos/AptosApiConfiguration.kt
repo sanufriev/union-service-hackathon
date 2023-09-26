@@ -10,6 +10,7 @@ import com.rarible.protocol.union.dto.BlockchainDto
 import com.rarible.protocol.union.integration.aptos.client.AptosWebClientFactory
 import com.rarible.protocol.union.integration.aptos.job.AptosPollerJob
 import com.rarible.protocol.union.integration.aptos.repository.AptosRepository
+import com.rarible.protocol.union.integration.aptos.service.AptosItemService
 import com.rarible.protocol.union.integration.aptos.service.PollerService
 import io.micrometer.core.instrument.MeterRegistry
 import org.springframework.boot.CommandLineRunner
@@ -17,7 +18,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Import
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate
-import org.springframework.web.reactive.function.client.WebClient
 
 @AptosConfiguration
 @Import(value = [CoreConfiguration::class])
@@ -34,6 +34,11 @@ class AptosApiConfiguration(
     @Bean
     fun aptosBlockchain(): BlockchainDto {
         return BlockchainDto.APTOS
+    }
+
+    @Bean
+    fun itemsService(repo: AptosRepository): AptosItemService {
+        return AptosItemService(repo)
     }
 
     @Bean

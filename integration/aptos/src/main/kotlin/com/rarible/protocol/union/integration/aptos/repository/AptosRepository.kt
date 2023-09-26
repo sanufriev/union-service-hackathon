@@ -24,9 +24,9 @@ class AptosRepository(
         return template.findById<AptosItemDocument>(id).awaitSingleOrNull()
     }
 
-    suspend fun getAll(): List<AptosItemDocument> {
-        val sort = Sort.by(Sort.Order.asc("createdAt"))
-        return template.find<AptosItemDocument>(Query().limit(10).with(sort)).collectList().awaitSingle()
+    suspend fun getAll(size: Int): List<AptosItemDocument> {
+        val sort = Sort.by(Sort.Order.desc("createdAt"))
+        return template.find<AptosItemDocument>(Query().limit(size).with(sort)).collectList().awaitSingle()
     }
 
 }

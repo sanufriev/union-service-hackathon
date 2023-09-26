@@ -7,6 +7,7 @@ import com.rarible.protocol.union.dto.BlockchainDto
 import com.rarible.protocol.union.dto.CollectionIdDto
 import com.rarible.protocol.union.dto.ItemIdDto
 import com.rarible.protocol.union.integration.aptos.repository.AptosItemDocument
+import io.daonomic.rpc.domain.Word
 import java.math.BigInteger
 import java.time.Instant
 
@@ -16,7 +17,8 @@ object AptosItemConverter {
         return UnionItem(
             id = ItemIdDto(
                 blockchain = BlockchainDto.APTOS,
-                value = document.id
+                contract = document.data.currentTokenData.currentCollection.collectionId,
+                tokenId = Word.apply(document.data.currentTokenData.tokenDataId).toBigInteger()
             ),
             collection = CollectionIdDto(
                 blockchain = BlockchainDto.APTOS,

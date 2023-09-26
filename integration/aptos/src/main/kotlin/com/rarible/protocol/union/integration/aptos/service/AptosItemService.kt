@@ -11,6 +11,7 @@ import com.rarible.protocol.union.dto.RoyaltyDto
 import com.rarible.protocol.union.dto.continuation.page.Page
 import com.rarible.protocol.union.integration.aptos.converter.AptosItemConverter
 import com.rarible.protocol.union.integration.aptos.repository.AptosRepository
+import java.math.BigInteger
 
 @CaptureSpan(type = "blockchain")
 open class AptosItemService(
@@ -24,7 +25,7 @@ open class AptosItemService(
         lastUpdatedFrom: Long?,
         lastUpdatedTo: Long?
     ): Page<UnionItem> {
-        val items = repository.getAll().map { AptosItemConverter.convert(it) }
+        val items = repository.getAll(size).map { AptosItemConverter.convert(it) }
         return Page(
             total = items.size.toLong(),
             continuation = null,
@@ -35,7 +36,7 @@ open class AptosItemService(
     override suspend fun getItemById(
         itemId: String
     ): UnionItem {
-        val tokenId = itemId.split(":").last()
+        val tokenId = "0x${BigInteger(itemId.split(":").last()).toString(16)}"
         val item = repository.get(tokenId) ?: throw UnionNotFoundException("Not found $tokenId")
         return AptosItemConverter.convert(item)
     }
