@@ -48,7 +48,7 @@ object CurrencyConverter {
             TEZOS -> com.rarible.protocol.currency.dto.BlockchainDto.TEZOS
             SOLANA -> com.rarible.protocol.currency.dto.BlockchainDto.SOLANA
             MANTLE -> com.rarible.protocol.currency.dto.BlockchainDto.MANTLE
-            APTOS -> com.rarible.protocol.currency.dto.BlockchainDto.MANTLE // TODO: APTOS
+            APTOS -> com.rarible.protocol.currency.dto.BlockchainDto.APTOS
         }
     }
 

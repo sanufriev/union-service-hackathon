@@ -132,6 +132,7 @@ fun randomUnionItem(id: ItemIdDto = randomEthItemId()): UnionItem {
             randomSolanaTokenDto(id),
             BlockchainDto.SOLANA
         )
+        else -> TODO()
     }
 }
 
