@@ -6,6 +6,7 @@ import com.rarible.protocol.union.integration.aptos.repository.AptosRepository
 import com.rarible.protocol.union.integration.aptos.service.PollerService
 import io.micrometer.core.instrument.MeterRegistry
 import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.time.delay
 import java.time.Duration
@@ -30,7 +31,7 @@ class AptosPollerJob(
                 async {
                     aptosRepository.save(event)
                 }
-            }
+            }.awaitAll()
         }
         logger.info("Get events: ${data.data.token_activities_v2.size}, lastVersion=${data.data.token_activities_v2.last().transactionVersion}")
         delay(pollingPeriod)
