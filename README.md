@@ -35,4 +35,4 @@ See more information on [CONTRIBUTING.md](https://github.com/rarible/protocol/bl
 
 Rarible Protocol is available under [GPL v3](LICENSE.md).
 
-SDK and openapi (with generated clients) are available under [MIT](MIT-LICENSE.md).
+SDK and openapi (with generated clients) are available under [MIT](MIT-LICENSE.md)..
